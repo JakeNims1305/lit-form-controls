@@ -1,11 +1,11 @@
 {
-  "name": "lit-element-boilerplate",
+  "name": "lit-form-controls",
   "author": "Jake Nimergood",
   "private": true,
   "version": "0.0.1",
-  "description": "Lit Element template repo using Vite",
-  "main": "RootBoilerplate.ts",
-  "module": "RootBoilerplate.ts",
+  "description": "Lit Element Form Controls using Form Control Mixin",
+  "main": "LitFormControls.ts",
+  "module": "LitFormControls.ts",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -25,6 +25,7 @@
     "vite"
   ],
   "dependencies": {
+    "@vaadin/router": "^1.7.5",
     "lit": "^2.8.0",
     "vite": "^4.4.9"
   },
@@ -35,7 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "@open-wc/testing": "^3.2.0",
-    "bun-types": "latest",
+    "bun-types": "^1.0.2",
     "eslint": "^8.49.0",
     "lit-analyzer": "^1.2.1",
     "prettier": "^3.0.3",

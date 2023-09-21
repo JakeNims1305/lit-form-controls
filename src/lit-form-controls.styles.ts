@@ -1,6 +1,6 @@
 import { css, CSSResultOrNative } from 'lit';
 
-export const RootBoilerplateStyles: CSSResultOrNative = css`
+export const LitFormControlsStyles: CSSResultOrNative = css`
   :host {
     max-width: 1280px;
     margin: 0 auto;
