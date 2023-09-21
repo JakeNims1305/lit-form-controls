@@ -11,7 +11,8 @@ import { query } from 'lit/decorators.js';
 import { Router } from '@vaadin/router';
 import { routes } from './config/routes';
 
-import './components/lit-combobox/lit-combobox-ts';
+import './views/landing-view/landing-view-ts';
+import './components/nims-combobox/nims-combobox-ts';
 
 export class LitFormControls extends LitElement implements ILitFormControls {
   static override get styles(): CSSResultOrNative[] {
@@ -32,7 +33,8 @@ export class LitFormControls extends LitElement implements ILitFormControls {
   // Render Methods ----------------------------------------------------------//
   override render(): HTMLTemplateResult {
     return html`
-      <a href="/lit-combobox">Combobox</a>
+      <a href="/landing-view">Landing Page</a>
+      <a href="/nims-combobox">Combobox</a>
       <main id="outlet"></main>
     `;
   }

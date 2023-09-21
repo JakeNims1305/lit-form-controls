@@ -1,11 +1,11 @@
 import { css, CSSResultOrNative, html, HTMLTemplateResult, LitElement } from "lit";
-import { ILitCombobox } from "./lit-combobox.interface"
-import { LitComboboxStyles } from "./lit-combobox.styles";
+import { INimsCombobox } from "./nims-combobox.interface"
+import { NimsComboboxStyles } from "./nims-combobox.styles";
 
-export class LitCombobox extends LitElement implements ILitCombobox {
+export class NimsCombobox extends LitElement implements INimsCombobox {
   static override get styles(): CSSResultOrNative[] {
     return [
-      LitComboboxStyles,
+      NimsComboboxStyles,
       css``
     ];
   }
@@ -22,7 +22,7 @@ export class LitCombobox extends LitElement implements ILitCombobox {
   // Render ------------------------------------------------------------------//
   override render(): HTMLTemplateResult {
     return html`
-      Im a combobox
+      Nims Combobox
     `;
   }
 }
