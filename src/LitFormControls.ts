@@ -12,7 +12,7 @@ import { Router } from '@vaadin/router';
 import { routes } from './config/routes';
 
 import './views/landing-view/landing-view-ts';
-import './components/nims-combobox/nims-combobox-ts';
+import './views/development-view/development-view-ts';
 
 export class LitFormControls extends LitElement implements ILitFormControls {
   static override get styles(): CSSResultOrNative[] {
@@ -34,7 +34,7 @@ export class LitFormControls extends LitElement implements ILitFormControls {
   override render(): HTMLTemplateResult {
     return html`
       <a href="/landing-view">Landing Page</a>
-      <a href="/nims-combobox">Combobox</a>
+      <a href="/development-view">Development View</a>
       <main id="outlet"></main>
     `;
   }
