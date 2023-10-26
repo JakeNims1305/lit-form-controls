@@ -1,17 +1,33 @@
 import { css, CSSResult } from "lit";
 
 export const NimsComboboxStyles: CSSResult = css`
-  .combobox-container {
-    display: flex;
-    flex-direction: column;
+  :host {
+    --item-padding: 1rem;
+    --item-padding--compact:  0.5rem;
   }
 
   input {
-    
+    padding: 12px 20px;
+  }
+
+  input.compact {
+    padding: 8px 16px;
   }
 
   lit-virtualizer {
+    position: relative !important;
     border-radius: 4px;
+    height: 300px;
+  }
+
+  lit-virtualizer.compact {
+    height: 150px;
+  }
+
+  .combobox-container {
+    display: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .invalid {
@@ -20,7 +36,7 @@ export const NimsComboboxStyles: CSSResult = css`
 
   .item {
     background-color: lightgray;
-    padding: 0.5rem;
+    padding: var(--item-padding);
     width: 100%;
   }
 
@@ -30,6 +46,14 @@ export const NimsComboboxStyles: CSSResult = css`
   }
 
   .item.compact {
-    padding: 0.25rem;
+    padding: var(--item-padding--compact);
+  }
+
+  .helper-text {
+
+  }
+
+  .invalid-text {
+    color: red;
   }
 `;

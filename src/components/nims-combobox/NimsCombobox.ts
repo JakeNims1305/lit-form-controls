@@ -1,13 +1,14 @@
 import { CSSResultOrNative, html, HTMLTemplateResult, LitElement, nothing, TemplateResult } from "lit";
 import { INimsCombobox } from "./nims-combobox.interface"
 import { NimsComboboxStyles } from "./nims-combobox.styles";
-import { FormControlMixin, Validator } from "@open-wc/form-control";
+import { FormControlMixin, requiredValidator, Validator } from "@open-wc/form-control";
 import { property, query, state } from "lit/decorators.js";
 import { live } from "lit/directives/live.js";
 import { Utilities } from "../../shared/Utilities";
 import { LitVirtualizer } from "@lit-labs/virtualizer";
 
 import '@lit-labs/virtualizer';
+import { invalidValueValidator } from "./nims-combobox.validators";
 
 export class NimsCombobox extends FormControlMixin(LitElement) implements INimsCombobox {
   static override get styles(): CSSResultOrNative[] {
@@ -26,7 +27,10 @@ export class NimsCombobox extends FormControlMixin(LitElement) implements INimsC
   }
 
   static get formControlValidators(): Validator[] {
-    return [];
+    return [
+      requiredValidator,
+      invalidValueValidator,
+    ];
   }
 
   @property({ type: Boolean, attribute: 'required' })
@@ -127,6 +131,22 @@ export class NimsCombobox extends FormControlMixin(LitElement) implements INimsC
 
   #onClick = () => {
     this._open = true;
+  };
+
+  #onSelect = (event: Event) => {
+    const element = event.target as HTMLSpanElement;
+    const { value } = element.dataset;
+    if (value !== undefined) {
+      if (this.value !== value) {
+        this.value = value;
+        this.setValue(this.value);
+        if (this.validationTarget) {
+          this.validationTarget.value = value;
+          this.validationTarget.dispatchEvent(new Event('input'));
+        }
+      }
+    }
+    this.#closeDropdown();
   };
 
   #onArrowUp = () => {
@@ -233,6 +253,7 @@ export class NimsCombobox extends FormControlMixin(LitElement) implements INimsC
       "
       data-value="${item}" 
       data-index="${index}"
+      @click="${this.#onSelect}"
     >
       ${item}
     </span>
@@ -248,6 +269,7 @@ export class NimsCombobox extends FormControlMixin(LitElement) implements INimsC
         <input
           id="validation-target"
           class="
+            ${this.compact ? 'compact' : ''}
             ${this.errorMessage ? 'invalid' : ''}
           "
           name="combobox"
@@ -262,10 +284,19 @@ export class NimsCombobox extends FormControlMixin(LitElement) implements INimsC
           @click="${this.#onClick}"
           @keydown="${this.#onKeydown}"
         />
+        <span 
+          class="
+            helper-text
+            ${this.errorMessage ? 'invalid-text' : ''}
+          "
+        >
+          ${this.errorMessage ? this.errorMessage : this.helperText}
+        </span>
         ${this._open ? html`
           <lit-virtualizer
             scroller
             role="list listbox"
+            class="${this.compact ? 'compact' : ''}"
             .items="${this.items.filter(item => Utilities.fuzzyMatch(item, this.value))}"
             .renderItem="${this.#renderItem}"
           ></lit-virtualizer>

@@ -29,6 +29,7 @@ export class DevelopmentView extends LitElement implements IDevelopmentView {
         <form>
           <nims-combobox-lit 
             required
+            compact
             .items="${FRUITS}"
           >
             <div slot="label">

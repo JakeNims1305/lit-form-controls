@@ -13,4 +13,11 @@ export const FRUITS = [
   'Raspberry',
   'Blackberry',
   'Durian',
+  'Grape',
+  'Watermelon',
+  'Plum',
+  'Cherry',
+  'Cranberry',
+  'Dragonfruit',
+  'Lychee'
 ];
